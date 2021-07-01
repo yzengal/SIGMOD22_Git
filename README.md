@@ -1,1 +1,1 @@
-# SIGMOD22_Git
+# Code for SIGMOD submission
