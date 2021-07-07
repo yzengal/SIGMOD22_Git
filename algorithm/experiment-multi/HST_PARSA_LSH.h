@@ -1,5 +1,5 @@
-#ifndef HST_PARSA_H
-#define HST_PARSA_H
+#ifndef HST_PARSA_LSH_H
+#define HST_PARSA_LSH_H
 
 #include <bits/stdc++.h>
 using namespace std;

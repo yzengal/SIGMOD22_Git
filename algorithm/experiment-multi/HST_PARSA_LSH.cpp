@@ -1,4 +1,4 @@
-#include "HST_PARSA.h"
+#include "HST_PARSA_LSH.h"
 #include "global.h"
 #ifdef WATCH_MEM
 #include "monitor.h"
@@ -25,8 +25,6 @@ Node_t* rt = NULL;
 Node_t** leaves = NULL;
 double beta = 1.0;
 static vector<vector<double> > distorUB;
-static vector<double> distorLB;
-static vector<double> distorLB_;
 int num_partitions_LB;
 int num_points_LB;
 int num_points_UB;
@@ -445,32 +443,6 @@ void _getParition(int& nid, int centerId, partition_t& g, vector<partition_t>& l
 
 		far = child;
 	}
-	
-	reverse(U.begin(), U.end());
-	int b = 0, e = 0;
-	for (int i=0,k=0; i<npos; i=k) {
-		while (k<npos && levs[U[k]]==levs[U[i]]) ++k;
-		double dt = distAtLevel(levs[U[i]]);
-		
-		for (int j=i; j<k; ++j) {
-			int pid = g.ids[U[j]], qid = 0;
-			if (i==0 || b>=e) continue;
-			
-			double d = -1.0, tmp;
-			for (int ii=b; ii<e; ++ii) {
-				qid = g.ids[U[ii]];
-				tmp = dist(V, pid, qid);
-				if (d<0 || tmp<d)
-					d = tmp;
-			}
-			
-			maxDistor = max(maxDistor, dt/d);
-		}
-	
-		if (k > i) {
-			b = i, e = k;
-		}
-	}
 }
 
 int _getCenter_maxDistor_complex(partition_t& g, FUNC_MAXDISTOR_UB _calc_maxDistor_UB) {
@@ -651,7 +623,6 @@ int _getCenter_subspaceDistor_complex(partition_t& g, FUNC_SUBDISTOR_UB _calc_su
 		
 		for (int i=0; i<sz; ++i) {
 			mark[g.ids[i]] = -1;
-			distorLB_[g.ids[i]] = 1.0;
 		}
 		
 		vector<pair<double,int> > UBs(sz);
@@ -671,8 +642,6 @@ int _getCenter_subspaceDistor_complex(partition_t& g, FUNC_SUBDISTOR_UB _calc_su
 			if (mark[centerId] != -1) 
 				continue;
 			--n_sample;
-			if (mn <= distorLB_[centerId]) 
-				continue;
 			tmp = _calc_subspaceDistor_UB(centerId, g, mn);
 			if (tmp < mn) {
 				mn = tmp;
