@@ -18,7 +18,7 @@ OS: Linux
 
 ### Compile the algorithm
 
-###### Note that the directory paths of ANNLIB and BOOSTLIB in the Makefile need to be revised based on your own settings.
+##### Note that the directory paths of ANNLIB and BOOSTLIB in the Makefile need to be revised based on your own settings.
 
 cd algorithm/experiment-real-and-scalability && make all
 or cd algorithm/experiment-multi && make all
@@ -49,7 +49,7 @@ genSynData.py: the data generator of the synthetic datatests for scalability tes
 
 genRealData.py: the data generator for varying the parameters of the real datasets
 
-###### Notice we only provide samples here since the data file is too large. The data generators above can be used to generate all the test cases.
+##### Notice we only provide samples here since the data file is too large. The data generators above can be used to generate all the test cases.
 
 ### Run the algorithm
 
