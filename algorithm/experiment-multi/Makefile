@@ -6,7 +6,7 @@ ANNLIB = -I /home/anonymous/ann/include -L /home/anonymous/ann/lib -lANN
 CFLAGS = --std=c++11 -W -Wall -Wno-sign-compare -O3 -s -pipe -mmmx -msse -msse2 -msse3 # -mcmodel=medium
 MEM = -D WATCH_MEM
 
-all: FRT-2 FRT-3 FRT-4 FRT-5 FRT-10 FRT-20 FRT-100 Bar98-2 Bar98-3 Bar98-4 Bar98-5 Bar98-10 Bar98-20 Bar98-100 Bar96-2 Bar96-3 Bar96-4 Bar96-5 Bar96-10 Bar96-20 Bar96-100 DCnn-2 DCnn-3 DCnn-4 DCnn-5 DCnn-10 DCnn-20 DCnn-100 
+all: FRT-2 FRT-3 FRT-4 FRT-5 FRT-10 FRT-20 FRT-100 Bar98-2 Bar98-3 Bar98-4 Bar98-5 Bar98-10 Bar98-20 Bar98-100 Bar96-2 Bar96-3 Bar96-4 Bar96-5 Bar96-10 Bar96-20 Bar96-100 DCnn-2 DCnn-3 DCnn-4 DCnn-5 DCnn-10 DCnn-20 DCnn-100 DCsam-2 DCsam-3 DCsam-4 DCsam-5 DCsam-10 DCsam-20 DCsam-100
 monitor.o: monitor.h monitor.cpp
 	$(CXX) $(CFLAGS) -c monitor.cpp $(LIBS) $(MEM)
 	
@@ -178,6 +178,12 @@ HST_GDCO-100.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global-100.o monitor
 DCnn-100: DCnn.cpp global.h global.cpp global-100.o HST_GDCO.h HST_GDCO.cpp HST_GDCO-100.o monitor.h monitor.cpp monitor.o 
 	$(CXX) $(CFLAGS) -o DCnn-100 global-100.o monitor.o HST_GDCO-100.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=100
 
+HST_PARS_Fast-2.o: HST_PARS_Fast.h HST_PARS_Fast.cpp global.h global.cpp global-2.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_PARS_Fast-2.o -c global-2.o monitor.o HST_PARS_Fast.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=2
+
+DCsam-2: DCsam_Rtree.cpp global.h global.cpp global-2.o HST_PARS_Fast.h HST_PARS_Fast.cpp HST_PARS_Fast-2.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCsam-2 global-2.o monitor.o HST_PARS_Fast-2.o DCsam_Rtree.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=2
+
 .PHONY: clean
 clean:
 		-@rm *.o *.gcno *~ 2> /dev/null || true
@@ -185,3 +191,4 @@ clean:
 		-@rm Bar98-2 Bar98-3 Bar98-4 Bar98-5 Bar98-10 Bar98-20 Bar98-100  2> /dev/null || true
 		-@rm Bar96-2 Bar96-3 Bar96-4 Bar96-5 Bar96-10 Bar96-20 Bar96-100  2> /dev/null || true
 		-@rm DCnn-2 DCnn-3 DCnn-4 DCnn-5 DCnn-10 DCnn-20 DCnn-100  2> /dev/null || true
+		-@rm DCsam-2 DCsam-3 DCsam-4 DCsam-5 DCsam-10 DCsam-20 DCsam-100  2> /dev/null || true
