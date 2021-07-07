@@ -170,6 +170,7 @@ void randomization() {
 	for (int i=0; i<nV; ++i){
 		reverse_pi[pi[i]] = i;
 	}
+}
 
 inline void addChild(Node_t* far, Node_t* u) {
 	if (far != NULL) {
@@ -532,7 +533,7 @@ void _constructHST_partition_complex2(bool load, clock_t startClock, FUNC_MAXDIS
 	fflush(stdout);
 }
 
-int _getCenter_subspaceDistor_complex2(partition_t& g, FUNC_SUBDISTOR_UB _calc_subspaceDistor_UB) {
+int _getCenter_subspaceDistor_complex(partition_t& g, FUNC_SUBDISTOR_UB _calc_subspaceDistor_UB) {
 	if (g.ids.size() <= num_points_UB) return -1;
 	
 	int ret = -1;
@@ -578,9 +579,12 @@ int _getCenter_subspaceDistor_complex2(partition_t& g, FUNC_SUBDISTOR_UB _calc_s
 				PI.push_back(centerId);
 			}
 		}
-			
-		for (int i=0; i<PI.size(); ++i) {
+		
+		shuffle(PI.begin(), PI.end(), default_random_engine());
+		n_sample = num_points_SAMPLE;	
+		for (int i=0; i<PI.size()&&n_sample>0; ++i) {
 			int centerId = PI[i];
+			--n_sample;
 			tmp = _calc_subspaceDistor_UB(centerId, g, mn);
 			if (tmp < mn) {
 				mn = tmp;
@@ -589,14 +593,21 @@ int _getCenter_subspaceDistor_complex2(partition_t& g, FUNC_SUBDISTOR_UB _calc_s
 		}
 		
 		res = max(res, mn);
+		maxDistor = max(maxDistor, mn);
 	} else {
 		
 		for (int i=0; i<sz; ++i) {
 			mark[g.ids[i]] = -1;
 		}
 		
-		vector<int> PI = g.ids;
-		shuffle(PI.begin(), PI.end(), default_random_engine());
+		vector<pair<double,int> > UBs(sz);
+		for (int i=0; i<sz; ++i)
+			UBs[i] = make_pair(distorUB[g.ids[i]][g.lev+1], g.ids[i]);
+		sort(UBs.begin(), UBs.end());
+		
+		vector<int> PI(sz, 0);
+		for (int i=0; i<sz; ++i)
+			PI[i] = UBs[i].second;
 		int _centerId;
 		
 		initParameters(1, sz);
@@ -614,6 +625,7 @@ int _getCenter_subspaceDistor_complex2(partition_t& g, FUNC_SUBDISTOR_UB _calc_s
 		}
 		
 		if (mn > res) {
+			
 			initParameters(0, sz);
 			_centerId = ret;
 			for (int i=0; i<sz; ++i) 
@@ -621,15 +633,19 @@ int _getCenter_subspaceDistor_complex2(partition_t& g, FUNC_SUBDISTOR_UB _calc_s
 			_calc_subspaceDistor_UB(_centerId, g, INF);
 			PI.clear();
 			for (int i=0; i<sz; ++i) {
-				int centerId = g.ids[i];
+				int centerId = UBs[i].second;
 				if (mark[centerId]==_centerId && centerId!=_centerId) {
 					PI.push_back(centerId);
 				}
 			}
 			mark[_centerId] = _centerId;
 			
-			for (int i=0; mn>res&&i<PI.size(); ++i) {
+			
+			shuffle(PI.begin(), PI.end(), default_random_engine());
+			n_sample = num_points_SAMPLE;
+			for (int i=0; mn>res&&i<PI.size()&&n_sample>0; ++i) {
 				int centerId = PI[i];
+				--n_sample;
 				tmp = _calc_subspaceDistor_UB(centerId, g, mn);
 				if (tmp < mn) {
 					mn = tmp;
@@ -639,6 +655,7 @@ int _getCenter_subspaceDistor_complex2(partition_t& g, FUNC_SUBDISTOR_UB _calc_s
 		}
 		
 		res = max(res, mn);
+		maxDistor = max(maxDistor, mn);
 	}
 
 	return ret;

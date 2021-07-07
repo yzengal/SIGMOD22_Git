@@ -36,7 +36,7 @@ HST_GDCO.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global.o monitor.h monit
 DC: DC.cpp global.h global.cpp global.o HST_GDCO.h HST_GDCO.cpp HST_GDCO.o monitor.h monitor.cpp monitor.o
 	$(CXX) $(CFLAGS) -o DC global.o monitor.o HST_GDCO.o DC.cpp $(LIBS) $(BOOSTLIB) $(MEM)
 			
-DCnn: GREEDYO_O3.cpp global.h global.cpp global.o HST_GDCO.h HST_GDCO.cpp HST_GDCO.o monitor.h monitor.cpp monitor.o
+DCnn: DCnn.cpp global.h global.cpp global.o HST_GDCO.h HST_GDCO.cpp HST_GDCO.o monitor.h monitor.cpp monitor.o
 	$(CXX) $(CFLAGS) -o DCnn global.o monitor.o HST_GDCO.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM)
 	
 HST_PARS_Fast.o: HST_PARS_Fast.h HST_PARS_Fast.cpp global.h global.cpp global.o monitor.h monitor.cpp monitor.o
