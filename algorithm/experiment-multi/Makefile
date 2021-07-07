@@ -184,6 +184,36 @@ HST_PARS_Fast-2.o: HST_PARS_Fast.h HST_PARS_Fast.cpp global.h global.cpp global-
 DCsam-2: DCsam_Rtree.cpp global.h global.cpp global-2.o HST_PARS_Fast.h HST_PARS_Fast.cpp HST_PARS_Fast-2.o monitor.h monitor.cpp monitor.o 
 	$(CXX) $(CFLAGS) -o DCsam-2 global-2.o monitor.o HST_PARS_Fast-2.o DCsam_Rtree.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=2
 
+HST_PARSA_Fast-3.o: HST_PARSA_Fast.h HST_PARSA_Fast.cpp global.h global.cpp global-3.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_PARSA_Fast-3.o -c global-3.o monitor.o HST_PARSA_Fast.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=3
+
+DCsam-3: DCsam_ANN.cpp global.h global.cpp global-3.o HST_PARSA_Fast.h HST_PARSA_Fast.cpp HST_PARSA_Fast-3.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCsam-3 global-3.o monitor.o HST_PARSA_Fast-3.o DCsam_ANN.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=3
+
+HST_PARSA_Fast-4.o: HST_PARSA_Fast.h HST_PARSA_Fast.cpp global.h global.cpp global-4.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_PARSA_Fast-4.o -c global-4.o monitor.o HST_PARSA_Fast.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=4
+
+DCsam-4: DCsam_ANN.cpp global.h global.cpp global-4.o HST_PARSA_Fast.h HST_PARSA_Fast.cpp HST_PARSA_Fast-4.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCsam-4 global-4.o monitor.o HST_PARSA_Fast-4.o DCsam_ANN.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=4
+
+HST_PARSA_Fast-5.o: HST_PARSA_Fast.h HST_PARSA_Fast.cpp global.h global.cpp global-5.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_PARSA_Fast-5.o -c global-5.o monitor.o HST_PARSA_Fast.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=5
+
+DCsam-5: DCsam_ANN.cpp global.h global.cpp global-5.o HST_PARSA_Fast.h HST_PARSA_Fast.cpp HST_PARSA_Fast-5.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCsam-5 global-5.o monitor.o HST_PARSA_Fast-5.o DCsam_ANN.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=5
+
+HST_PARSA_Fast-10.o: HST_PARSA_Fast.h HST_PARSA_Fast.cpp global.h global.cpp global-10.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_PARSA_Fast-10.o -c global-10.o monitor.o HST_PARSA_Fast.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=10
+
+DCsam-10: DCsam_ANN.cpp global.h global.cpp global-10.o HST_PARSA_Fast.h HST_PARSA_Fast.cpp HST_PARSA_Fast-10.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCsam-10 global-10.o monitor.o HST_PARSA_Fast-10.o DCsam_ANN.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=10
+
+HST_PARSA_Fast-20.o: HST_PARSA_Fast.h HST_PARSA_Fast.cpp global.h global.cpp global-20.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_PARSA_Fast-20.o -c global-20.o monitor.o HST_PARSA_Fast.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=20
+
+DCsam-20: DCsam_ANN.cpp global.h global.cpp global-20.o HST_PARSA_Fast.h HST_PARSA_Fast.cpp HST_PARSA_Fast-20.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCsam-20 global-20.o monitor.o HST_PARSA_Fast-20.o DCsam_ANN.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=20
+
 .PHONY: clean
 clean:
 		-@rm *.o *.gcno *~ 2> /dev/null || true
