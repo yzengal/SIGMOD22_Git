@@ -1,7 +1,6 @@
 CC = gcc
 CXX = g++
 LIBS = 
-# BOOSTLIB = -I /export/data/anonymous/boost -L /export/data/anonymous/boost/stage/lib -lboost_system
 BOOSTLIB = -I /home/anonymous/boost -L /home/anonymous/boost/stage/lib -lboost_system
 ANNLIB = -I /home/anonymous/ann/include -L /home/anonymous/ann/lib -lANN
 CFLAGS = --std=c++11 -W -Wall -Wno-sign-compare -O3 -s -pipe -mmmx -msse -msse2 -msse3 # -mcmodel=medium

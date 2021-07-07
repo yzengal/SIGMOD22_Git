@@ -1,17 +1,12 @@
-##
-#	Makefile for the manuscript submitted to VLDB'20,
-#	Author: Trasier
-##
 CC = gcc
 CXX = g++
 LIBS = 
-# BOOSTLIB = -I /export/data/anonymous/boost -L /export/data/anonymous/boost/stage/lib -lboost_system
 BOOSTLIB = -I /home/anonymous/boost -L /home/anonymous/boost/stage/lib -lboost_system
 ANNLIB = -I /home/anonymous/ann/include -L /home/anonymous/ann/lib -lANN
 CFLAGS = --std=c++11 -W -Wall -Wno-sign-compare -O3 -s -pipe -mmmx -msse -msse2 -msse3 # -mcmodel=medium
 MEM = -D WATCH_MEM
 
-all: FRT-2 FRT-3 FRT-4 FRT-5 FRT-10 FRT-20 FRT-100 Bar98-2 Bar98-3 Bar98-4 Bar98-5 Bar98-10 Bar98-20 Bar98-100 Bar96-2 Bar96-3 Bar96-4 Bar96-5 Bar96-10 Bar96-20 Bar96-100
+all: FRT-2 FRT-3 FRT-4 FRT-5 FRT-10 FRT-20 FRT-100 Bar98-2 Bar98-3 Bar98-4 Bar98-5 Bar98-10 Bar98-20 Bar98-100 Bar96-2 Bar96-3 Bar96-4 Bar96-5 Bar96-10 Bar96-20 Bar96-100 DCnn-2 DCnn-3 DCnn-4 DCnn-5 DCnn-10 DCnn-20 DCnn-100 
 monitor.o: monitor.h monitor.cpp
 	$(CXX) $(CFLAGS) -c monitor.cpp $(LIBS) $(MEM)
 	
@@ -141,10 +136,52 @@ Bar96-20: Bar96.cpp global.h global.cpp global-20.o HST_BARTAL.h HST_BARTAL.cpp 
 Bar96-100: Bar96.cpp global.h global.cpp global-100.o HST_BARTAL.h HST_BARTAL.cpp HST_BARTAL-100.o monitor.h monitor.cpp monitor.o
 	$(CXX) $(CFLAGS) -o Bar96-100 global-100.o monitor.o HST_BARTAL-100.o Bar96.cpp $(LIBS) $(MEM) -DDIM_V=100
 
+HST_GDCO-2.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global-2.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_GDCO-2.o -c global-2.o monitor.o HST_GDCO.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=2
+			
+DCnn-2: DCnn.cpp global.h global.cpp global-2.o HST_GDCO.h HST_GDCO.cpp HST_GDCO-2.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCnn-2 global-2.o monitor.o HST_GDCO-2.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=2
+
+HST_GDCO-3.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global-3.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_GDCO-3.o -c global-3.o monitor.o HST_GDCO.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=3
+			
+DCnn-3: DCnn.cpp global.h global.cpp global-3.o HST_GDCO.h HST_GDCO.cpp HST_GDCO-3.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCnn-3 global-3.o monitor.o HST_GDCO-3.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=3
+
+HST_GDCO-4.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global-4.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_GDCO-4.o -c global-4.o monitor.o HST_GDCO.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=4
+			
+DCnn-4: DCnn.cpp global.h global.cpp global-4.o HST_GDCO.h HST_GDCO.cpp HST_GDCO-4.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCnn-4 global-4.o monitor.o HST_GDCO-4.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=4
+
+HST_GDCO-5.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global-5.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_GDCO-5.o -c global-5.o monitor.o HST_GDCO.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=5
+			
+DCnn-5: DCnn.cpp global.h global.cpp global-5.o HST_GDCO.h HST_GDCO.cpp HST_GDCO-5.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCnn-5 global-5.o monitor.o HST_GDCO-5.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=5
+
+HST_GDCO-10.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global-10.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_GDCO-10.o -c global-10.o monitor.o HST_GDCO.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=10
+			
+DCnn-10: DCnn.cpp global.h global.cpp global-10.o HST_GDCO.h HST_GDCO.cpp HST_GDCO-10.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCnn-10 global-10.o monitor.o HST_GDCO-10.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=10
+
+HST_GDCO-20.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global-20.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_GDCO-20.o -c global-20.o monitor.o HST_GDCO.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=20
+			
+DCnn-20: DCnn.cpp global.h global.cpp global-20.o HST_GDCO.h HST_GDCO.cpp HST_GDCO-20.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCnn-20 global-20.o monitor.o HST_GDCO-20.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=20
+
+HST_GDCO-100.o: HST_GDCO.h HST_GDCO.cpp global.h global.cpp global-100.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o HST_GDCO-100.o -c global-100.o monitor.o HST_GDCO.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=100
+			
+DCnn-100: DCnn.cpp global.h global.cpp global-100.o HST_GDCO.h HST_GDCO.cpp HST_GDCO-100.o monitor.h monitor.cpp monitor.o 
+	$(CXX) $(CFLAGS) -o DCnn-100 global-100.o monitor.o HST_GDCO-100.o DCnn.cpp $(LIBS) $(BOOSTLIB) $(MEM) -DDIM_V=100
+
 .PHONY: clean
 clean:
 		-@rm *.o *.gcno *~ 2> /dev/null || true
 		-@rm FRT-2 FRT-3 FRT-4 FRT-5 FRT-10 FRT-20 FRT-100  2> /dev/null || true
 		-@rm Bar98-2 Bar98-3 Bar98-4 Bar98-5 Bar98-10 Bar98-20 Bar98-100  2> /dev/null || true
 		-@rm Bar96-2 Bar96-3 Bar96-4 Bar96-5 Bar96-10 Bar96-20 Bar96-100  2> /dev/null || true
-		
+		-@rm DCnn-2 DCnn-3 DCnn-4 DCnn-5 DCnn-10 DCnn-20 DCnn-100  2> /dev/null || true
