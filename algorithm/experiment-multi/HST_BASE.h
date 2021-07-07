@@ -1,5 +1,5 @@
-#ifndef HST_PARS_H
-#define HST_PARS_H
+#ifndef HST_BASE_H
+#define HST_BASE_H
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -39,21 +39,8 @@ struct Node_t{
 	}
 };
 
-struct partition_t {
-	int lev;
-	Node_t* ptr;
-	vector<int> ids;
-};
-
 extern Node_t* rt;
 extern Node_t** leaves;
-extern int* mark;
-extern const int threshold_nV;
-extern int num_partitions_LB;
-extern int num_points_LB;
-extern int num_points_UB;
-extern int num_points_SAMPLE;
-extern double maxDistor;
 
 int countTree(Node_t* rt);
 void dumpNode(Node_t* p);
@@ -68,6 +55,7 @@ void freeHST(Node_t* &rt);
 pair<double,double> getDistortion();
 pair<double,double> getDistortion_fast();
 void randomization();
+void calcDmax();
 void calcDmaxPrune();
 int whichLevel(double l);
 double distAtLevel(int level);
@@ -78,22 +66,6 @@ pair<Node_t*, int> getLCA(Node_t* u, Node_t* v);
 int levelOfLCA(int u, int v);
 int levelOfLCA(Node_t* u, Node_t* v);
 
-typedef double (*FUNC_MAXDISTOR)(int, partition_t&); 
-typedef double (*FUNC_SUBDISTOR)(int, partition_t&); 
-typedef double (*FUNC_MAXDISTOR_UB)(int, partition_t&, double); 
-typedef double (*FUNC_SUBDISTOR_UB)(int, partition_t&, double); 
-void initParameters(int flag, int nV);
-
-void _constructHST_partition_complex2(bool load, clock_t startClock, FUNC_MAXDISTOR_UB _calc_maxDistor_UB, FUNC_SUBDISTOR_UB _calc_subspaceDistor);
-void _constructHST_partition_algo1(bool load, clock_t startClock);
-
-int _getCenter_maxDistor_complex(partition_t& g, FUNC_MAXDISTOR_UB func);
-double _calc_maxDistor_rtree0_UB(int centerId, partition_t& g, double UB);
-void _getParition(int& nid, int centerId, partition_t& g, vector<partition_t>& left);
-
-int _getCenter_subspaceDistor_complex(partition_t& g, FUNC_SUBDISTOR_UB func);
-double _calc_subspaceDistor_rtree0_UB2(int centerId, partition_t& g, double UB);
-void _getSubspaces(int& nid, int centerId, partition_t& g, vector<partition_t>& left);
-
+void _constructHST_ICDE_DPO(bool load, clock_t startClock);
 
 #endif

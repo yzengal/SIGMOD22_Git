@@ -2,7 +2,6 @@
 #define HST_BARTAL_H
 
 #include <bits/stdc++.h>
-#include <random>
 using namespace std;
 #include "global.h"
 #ifdef WATCH_MEM
@@ -123,7 +122,6 @@ int levelOfLCA(Node_t* u, Node_t* v);
 double sampleRadius_focs96(int n, double r);
 void _construct_probabilistic_partition(vector<cluster_t>& C, int clusterId, int& n_cluster);
 void _constructHST_focs96(bool load, clock_t startClock);
-
 
 double calc_g_stoc98(cluster_t& c);
 double sampleRadius_stoc98(cluster_t& c);
