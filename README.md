@@ -54,9 +54,11 @@ genRealData.py: the data generator for varying the parameters of the real datase
 ### Run the algorithm
 
 **1. Single test** 
+
 FRT ./realData/checkinNYC.txt ./realData/2/data_00.txt
 
 **2. Batch test**   
+
 python run-scripts/batchRun*.py 
 
 
