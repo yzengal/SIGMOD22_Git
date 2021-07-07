@@ -214,6 +214,21 @@ HST_PARSA_Fast-20.o: HST_PARSA_Fast.h HST_PARSA_Fast.cpp global.h global.cpp glo
 DCsam-20: DCsam_ANN.cpp global.h global.cpp global-20.o HST_PARSA_Fast.h HST_PARSA_Fast.cpp HST_PARSA_Fast-20.o monitor.h monitor.cpp monitor.o 
 	$(CXX) $(CFLAGS) -o DCsam-20 global-20.o monitor.o HST_PARSA_Fast-20.o DCsam_ANN.cpp $(LIBS) $(ANNLIB) $(MEM) -DDIM_V=20
 
+random.o: random.h random.cc def.h
+	$(CXX) $(CFLAGS) -o random.o -c random.cc $(LIBS)
+			
+pri_queue.o: pri_queue.h pri_queue.cc def.h
+	$(CXX) $(CFLAGS) -o pri_queue.o -c pri_queue.cc $(LIBS)
+		
+util.o: util.h util.cc def.h random.h random.cc random.o pri_queue.h pri_queue.cc pri_queue.o
+	$(CXX) $(CFLAGS) -o util.o -c random.o pri_queue.o util.cc $(LIBS)
+		
+HST_PARSA_LSH-100.o: HST_PARSA_LSH.h HST_PARSA_LSH.cpp global.h global.cpp global-100.o monitor.h monitor.cpp monitor.o qalsh.h util.h util.cc util.o def.h random.h random.cc random.o pri_queue.h pri_queue.cc pri_queue.o
+	$(CXX) $(CFLAGS) -o HST_PARSA_LSH-100.o -c global-100.o monitor.o util.o -c random.o pri_queue.o HST_PARSA_LSH.cpp $(LIBS) $(MEM) -DDIM_V=100
+
+DCsam-100: DCsam_QALSH.cpp global.h global.cpp global-100.o HST_PARSA_LSH.h HST_PARSA_LSH.cpp HST_PARSA_LSH-100.o monitor.h monitor.cpp monitor.o qalsh.h util.h util.cc util.o def.h random.h random.cc random.o pri_queue.h pri_queue.cc pri_queue.o
+	$(CXX) $(CFLAGS) -o DCsam-100 global-100.o monitor.o util.o random.o pri_queue.o HST_PARSA_LSH-100.o DCsam_QALSH.cpp $(LIBS) $(MEM) -DDIM_V=100
+
 .PHONY: clean
 clean:
 		-@rm *.o *.gcno *~ 2> /dev/null || true

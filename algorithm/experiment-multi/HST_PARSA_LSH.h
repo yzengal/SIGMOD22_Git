@@ -86,14 +86,15 @@ typedef double (*FUNC_SUBDISTOR_UB)(int, partition_t&, double);
 void initParameters(int flag, int nV);
 
 
-void _constructHST_partition_algo1(bool load, clock_t startClock);
-void _constructHST_partition_complex2(bool load, clock_t startClock, FUNC_MAXDISTOR_UB _calc_maxDistor_UB, FUNC_SUBDISTOR_UB _calc_subspaceDistor);
+void _constructHST_partition_algo1(bool load, clock_t startClock); // with reduction to NN queries, indexing
+void _constructHST_partition_complex2(bool load, clock_t startClock, FUNC_MAXDISTOR_UB _calc_maxDistor_UB, FUNC_SUBDISTOR_UB _calc_subspaceDistor); // without any optimization
 int _getCenter_maxDistor_complex(partition_t& g, FUNC_MAXDISTOR_UB func);
 int _getCenter_subspaceDistor_complex(partition_t& g, FUNC_SUBDISTOR_UB func);
 double _calc_maxDistor_rtree0_UB(int centerId, partition_t& g, double UB);
 double _calc_subspaceDistor_rtree0_UB2(int centerId, partition_t& g, double UB);
 void _getParition(int& nid, int centerId, partition_t& g, vector<partition_t>& left);
 void _getSubspaces(int& nid, int centerId, partition_t& g, vector<partition_t>& left);
+
 
 
 #endif
