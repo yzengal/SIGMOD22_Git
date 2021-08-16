@@ -3,7 +3,7 @@
 
 This repository stores the source code of the proposed algorithm to solve the Embedding Lp metrics by Tree metrics (ELT) problem.
 
-
+## app.pdf is the supplemental material, which provides the detailed results of FRT and DCsam in Fig. 3.
 
 Usage of the source code
 ---------------
