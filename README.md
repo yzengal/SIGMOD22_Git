@@ -3,14 +3,14 @@
 
 This repository stores the source code of the proposed algorithm to solve the Embedding Lp metrics by Tree metrics (ELT) problem.
 
-## app.pdf is the supplemental material, which provides the detailed results of FRT and DCsam in Fig. 3.
+## full.pdf is our full paper with the appendix A-E.
 
 Usage of the source code
 ---------------
 
 ### Environment
 
-gcc/g++ version: 4.8.5 with [Boost 1.74.0](https://www.boost.org/), Arya and Mount's [ANN Library 1.1.2](http://www.cs.umd.edu/~mount/ANN/)
+gcc/g++ version: 4.8.5 with [Boost 1.74.0](https://www.boost.org/), Arya and Mount's [ANN Library 1.1.2](http://www.cs.umd.edu/~mount/ANN/), FLANN [FLANN Library 1.9.1](https://github.com/flann-lib/flann)
 
 Python version: 2.7.5 with [Numpy 1.7.1](https://numpy.org/)
 
@@ -18,7 +18,7 @@ OS: Linux
 
 ### Compile the algorithm
 
-##### Note that the directory paths of ANNLIB and BOOSTLIB in the Makefile need to be revised based on your own settings.
+##### Note that the directory paths of ANNLIB, BOOSTLIB and FLANNLIB in the Makefile need to be revised based on your own settings.
 
 cd algorithm/experiment-real-and-scalability && make all
 or cd algorithm/experiment-multi && make all
@@ -35,6 +35,14 @@ DCsam*: our proposed DCsam in the experiments. For example, DCsam is for 2D spac
 
 DC: our proposed DC in the experiments. For example, DC is for 2D space.
 
+HSF: the baseline HSF+FRT in our appendix (i.e., the experiment under the insertion/deletion scenario).
+
+HSFdc: the extended algorithm HSF+DCsam in our appendix (i.e., the experiment under the insertion/deletion scenario).
+
+FRT-5: the baseline HSF+FRT in our appendix (i.e., the experiment on the non-Lp metrics). In Makefile, "-D CHISQUARE" is for chi-square histogram distance and "-D HELLINGER" is for Hellinger distance.
+
+DCsam-5: the extended algorithm HSF+DCsam in our appendix (i.e., the experiment on the non-Lp metrics). In Makefile, "-D CHISQUARE" is for chi-square histogram distance and "-D HELLINGER" is for Hellinger distance.
+
 ### Datasets
 
 dataset/realData: real datasets used in the experiments. For example, checkinNYC.txt and checkinTKY are Foursquare datasets, and gaiaChengdu.txt and gaiaHaikou.txt are Didi datasets.
@@ -49,6 +57,10 @@ genSynData.py: the data generator of the synthetic datatests for scalability tes
 
 genRealData.py: the data generator for varying the parameters of the real datasets
 
+dataset/updateData: real datasets used in the appendix (i.e., the experiment under the insertion/deletion scenario).
+
+dataset/nonlpData: synthetic datasets used in the appendix (i.e., the experiment on the non-Lp metrics).
+
 ##### Notice we only provide samples here since the data file is too large. The data generators above can be used to generate all the test cases.
 
 ### Run the algorithm
@@ -56,6 +68,8 @@ genRealData.py: the data generator for varying the parameters of the real datase
 **1. Single test** 
 
 FRT ./realData/checkinNYC.txt ./realData/2/data_00.txt
+
+HSF ./updateData/checkinNYC_2/data_0.txt
 
 **2. Batch test**   
 
