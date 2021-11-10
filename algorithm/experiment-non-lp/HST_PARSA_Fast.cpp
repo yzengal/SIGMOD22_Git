@@ -26,7 +26,7 @@ int num_points_UB;
 int num_points_SAMPLE;
 static double res = 1.0;
 double maxDistor = 1.0;
-static double eps_ann = (DIM_V<=10) ? 4.0 : 4.5;
+static double eps_ann = (DIM_V<=10) ? 2.0 : 2.5;
 static int FLANN_CHECK = 128;
 double* dataset = NULL;
 static flann::Matrix<int> NNindices(new int[1], 1, 1);

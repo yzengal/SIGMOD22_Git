@@ -51,15 +51,16 @@ dataset/multiData: multi-dimensional synthetic datasets used in the experiments,
 
 dataset/synData: synthetic datasets for scalability tests used in the experiments, eg, Uniform, Normal, Exponential and Skewed distributions.
 
+dataset/updateData: real datasets used in the appendix (i.e., the experiment under the insertion/deletion scenario).
+
+dataset/nonlpData: synthetic datasets used in the appendix (i.e., the experiment on the non-Lp metrics).
+
 genMultiData.py: the data generator of the multi-dimensional datasets
 
 genSynData.py: the data generator of the synthetic datatests for scalability tests
 
 genRealData.py: the data generator for varying the parameters of the real datasets
 
-dataset/updateData: real datasets used in the appendix (i.e., the experiment under the insertion/deletion scenario).
-
-dataset/nonlpData: synthetic datasets used in the appendix (i.e., the experiment on the non-Lp metrics).
 
 ##### Notice we only provide samples here since the data file is too large. The data generators above can be used to generate all the test cases.
 
