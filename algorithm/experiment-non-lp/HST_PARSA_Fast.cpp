@@ -278,7 +278,7 @@ void calcDmax() {
 			dmax_ = tmp;
 		}
 	}
-	dmax += dmax_ + 1.0;
+	dmax += dmax_;
 }
 
 pair<double,double> getDistortion() {

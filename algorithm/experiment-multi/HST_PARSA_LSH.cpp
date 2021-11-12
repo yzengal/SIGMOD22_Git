@@ -270,13 +270,18 @@ void calcDmax() {
 	if (dmax >= 0.0) return ;
 
 	dmax = 0.0;
+	double dmax_ = 0.0;
 	double tmp;
-	for (int i=0; i<nV; i++) {
-		for (int j=i+1; j<nV; j++) {
-			tmp = dist(V, i, j);
-			dmax = max(dmax, tmp);
+	for (int j=1; j<nV; ++j) {
+		tmp = dist(V, pi[0], j);
+		if (tmp >= dmax) {
+			dmax_ = dmax;
+			dmax = tmp;
+		} else if (tmp > dmax_) {
+			dmax_ = tmp;
 		}
 	}
+	dmax += dmax_;
 }
 
 pair<double,double> getDistortion() {
