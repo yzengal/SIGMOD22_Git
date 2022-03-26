@@ -3,7 +3,7 @@
 
 This repository stores the source code of the proposed algorithm to solve the Embedding Lp metrics by Tree metrics (ELT) problem.
 
-## full.pdf is our full paper with the appendix A-E and the new lemma has been updated on the original code for multi-dimensional datasets, real-world datasets and large-scale datasets (see the calcDmax function for more detail).
+## appendix.pdf is the additional appendix for our full paper.
 
 Usage of the source code
 ---------------
