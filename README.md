@@ -28,7 +28,7 @@ Usage of the source code
 
 ### Environment
 
-gcc/g++ version: 4.8.5 with [Boost 1.74.0](https://www.boost.org/), Arya and Mount's [ANN Library 1.1.2](http://www.cs.umd.edu/~mount/ANN/), FLANN [FLANN Library 1.9.1](https://github.com/flann-lib/flann)
+gcc/g++ version: 4.8.5 with [Boost 1.74.0](https://www.boost.org/), Arya and Mount's [ANN Library 1.1.2](http://www.cs.umd.edu/~mount/ANN/), FLANN [Library 1.9.1](https://github.com/flann-lib/flann)
 
 Python version: 2.7.5 with [Numpy 1.7.1](https://numpy.org/)
 
