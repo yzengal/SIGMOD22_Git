@@ -11,7 +11,7 @@ If you find this work helpful in your research, please consider citing our paper
 ```  
 @inproceedings{DBLP:conf/sigmod/ZengTC22,
   author    = {Yuxiang Zeng and
-			   Yongxin Tong and
+               Yongxin Tong and
                Lei Chen},
   title     = {Faster and Better Solution to Embed Lp Metrics by Tree Metrics},
   booktitle = {{SIGMOD}},
