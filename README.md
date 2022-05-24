@@ -1,9 +1,27 @@
-# Code for SIGMOD submission
+# Faster and Better Solution to Embed Lp Metrics by Tree Metrics
 ========================================================================
 
-This repository stores the source code of the proposed algorithm to solve the Embedding Lp metrics by Tree metrics (ELT) problem.
 
-## appendix.pdf is the additional appendix for our full paper.
+This repository stores the source code of our proposed framework called DC in our SIGMOD'22 paper, "Faster and Better Solution to Embed Lp Metrics by Tree Metrics".
+
+[1] **Faster and Better Solution to Embed Lp Metrics by Tree Metrics.**
+*Yuxiang Zeng, Yongxin Tong, Lei Chen.* SIGMOD 2022. 
+
+If you find this work helpful in your research, please consider citing our paper and the bibtex is listed below:
+```  
+@inproceedings{DBLP:conf/sigmod/ZengTC22,
+  author    = {Yuxiang Zeng and
+			   Yongxin Tong and
+               Lei Chen},
+  title     = {Faster and Better Solution to Embed Lp Metrics by Tree Metrics},
+  booktitle = {{SIGMOD}},
+  year      = {2022},
+}
+```  
+
+## SIGMOD22-HST.ppsx is our presentation slides.
+
+## appendix.pdf is the additional appendix of our paper.
 
 Usage of the source code
 ---------------
